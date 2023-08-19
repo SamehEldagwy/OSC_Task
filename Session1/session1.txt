@@ -20,30 +20,7 @@ osc@pop-os:~/sameh khalil/Documents/-$ cd ..
 osc@pop-os:~/sameh khalil/Documents$ cd ..
 osc@pop-os:~/sameh khalil$ cd ..
 osc@pop-os:~$ mv Documents/ My_Documents
-osc@pop-os:~$ ls
- Desktop     My_Documents  'sameh khalil'   testFolder            Videos
- Downloads   Pictures       session2.txt    Updated-Task-02
- Music       Public         Templates       Updated-Task-02.zip
-osc@pop-os:~$ cp -r My_Documents/ sameh\ khalil/
-osc@pop-os:~$ ls -a
- .               .local                      Templates
- ..              .mozilla                    testFolder
- .bash_history   Music                       Updated-Task-02
- .bash_logout    My_Documents                Updated-Task-02.zip
- .bashrc         Pictures                    .vboxclient-clipboard.pid
- .cache          .profile                    .vboxclient-draganddrop.pid
- .config         Public                      .vboxclient-seamless.pid
- Desktop        'sameh khalil'               .vboxclient-vmsvga-session-tty2.pid
- Downloads       session2.txt                Videos
- .lesshst        .sudo_as_admin_successful
 osc@pop-os:~$ cd sameh\ khalil/
-osc@pop-os:~/sameh khalil$ ls -a
-.  ..  Documents  .hedden_file  My_Documents
-osc@pop-os:~/sameh khalil$ ls -a
-.  ..  Documents  .hedden_file  My_Documents
-osc@pop-os:~/sameh khalil$ mv Documents/
--/         file1.txt  file2.txt  file3.txt  
-osc@pop-os:~/sameh khalil$ mv Documents/
 osc@pop-os:~/sameh khalil$ ls -a
 .  ..  Documents  .hedden_file  My_Documents
 osc@pop-os:~/sameh khalil$ mv Documents/file2.txt  ..
