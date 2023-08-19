@@ -1,0 +1,66 @@
+osc@pop-os:~$ mkdir "sameh khalil"
+osc@pop-os:~$ cd sameh\ khalil/
+osc@pop-os:~/sameh khalil$ mkdir Documents
+osc@pop-os:~/sameh khalil$ cd Documents/
+osc@pop-os:~/sameh khalil/Documents$ touch file1.txt file2.txt file3.txt
+osc@pop-os:~/sameh khalil/Documents$ ls
+file1.txt  file2.txt  file3.txt
+osc@pop-os:~/sameh khalil/Documents$ cd ..
+osc@pop-os:~/sameh khalil$ touch .hedden_file
+osc@pop-os:~/sameh khalil$ ls
+Documents
+osc@pop-os:~/sameh khalil$ ls -a
+.  ..  Documents  .hedden_file
+osc@pop-os:~/sameh khalil$ nano Documents/file1.txt 
+osc@pop-os:~/sameh khalil$ cat Documents/file1.txt 
+Hello World!
+osc@pop-os:~/sameh khalil$ mkdir ~/sameh\ khalil/Documents/-/
+osc@pop-os:~/sameh khalil$ cd ~/sameh\ khalil/Documents/-/
+osc@pop-os:~/sameh khalil/Documents/-$ cd ..
+osc@pop-os:~/sameh khalil/Documents$ cd ..
+osc@pop-os:~/sameh khalil$ cd ..
+osc@pop-os:~$ mv Documents/ My_Documents
+osc@pop-os:~$ ls
+ Desktop     My_Documents  'sameh khalil'   testFolder            Videos
+ Downloads   Pictures       session2.txt    Updated-Task-02
+ Music       Public         Templates       Updated-Task-02.zip
+osc@pop-os:~$ cp -r My_Documents/ sameh\ khalil/
+osc@pop-os:~$ ls -a
+ .               .local                      Templates
+ ..              .mozilla                    testFolder
+ .bash_history   Music                       Updated-Task-02
+ .bash_logout    My_Documents                Updated-Task-02.zip
+ .bashrc         Pictures                    .vboxclient-clipboard.pid
+ .cache          .profile                    .vboxclient-draganddrop.pid
+ .config         Public                      .vboxclient-seamless.pid
+ Desktop        'sameh khalil'               .vboxclient-vmsvga-session-tty2.pid
+ Downloads       session2.txt                Videos
+ .lesshst        .sudo_as_admin_successful
+osc@pop-os:~$ cd sameh\ khalil/
+osc@pop-os:~/sameh khalil$ ls -a
+.  ..  Documents  .hedden_file  My_Documents
+osc@pop-os:~/sameh khalil$ ls -a
+.  ..  Documents  .hedden_file  My_Documents
+osc@pop-os:~/sameh khalil$ mv Documents/
+-/         file1.txt  file2.txt  file3.txt  
+osc@pop-os:~/sameh khalil$ mv Documents/
+osc@pop-os:~/sameh khalil$ ls -a
+.  ..  Documents  .hedden_file  My_Documents
+osc@pop-os:~/sameh khalil$ mv Documents/file2.txt  ..
+osc@pop-os:~/sameh khalil$ mv Documents/file3.txt  ..
+osc@pop-os:~/sameh khalil$ ls
+Documents  My_Documents
+osc@pop-os:~/sameh khalil$ cd
+osc@pop-os:~$ cd sameh\ khalil/
+osc@pop-os:~/sameh khalil$ ls -li
+total 8
+948243 drwxrwxr-x 3 osc osc 4096 Aug 19 03:50 Documents
+953675 drwxrwxr-x 2 osc osc 4096 Aug 19 03:48 My_Documents
+osc@pop-os:~/sameh khalil$ cd ..
+osc@pop-os:~$ rm -r sameh\ khalil/
+osc@pop-os:~$ ls
+Desktop    file3.txt     Pictures      Templates        Updated-Task-02.zip
+Downloads  Music         Public        testFolder       Videos
+file2.txt  My_Documents  session2.txt  Updated-Task-02
+
+
