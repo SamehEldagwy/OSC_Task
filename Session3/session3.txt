@@ -1,0 +1,492 @@
+osc@pop-os:~$ sudo useradd -m osc1
+osc@pop-os:~$ sudo passwd osc1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+osc@pop-os:~$ sudo groupadd osc_group
+osc@pop-os:~$ groups osc1
+osc1 : osc1
+osc@pop-os:~$ sudo usermod -aG sudo osc1
+usermod: group 'sudo' does not exist
+osc@pop-os:~$ sudo usermod -aG osc_group osc_task
+usermod: user 'osc_task' does not exist
+osc@pop-os:~$ sudo usermod -aG osc_group osc1
+osc@pop-os:~$ sudo usermod -aG sudo osc1
+usermod: group 'sudo' does not exist
+osc@pop-os:~$ sudo groupadd sudo
+osc@pop-os:~$ sudo usermod -aG sudo osc1
+osc@pop-os:~$ su - osc1
+Password: 
+$ bash
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+osc1@pop-os:~$ cd /home/
+osc1@pop-os:/home$ mkdir permission_practice
+mkdir: cannot create directory ‘permission_practice’: Permission denied
+osc1@pop-os:/home$ sudo mkdir permission_practice
+[sudo] password for osc1: 
+osc1@pop-os:/home$ cd permission_practice/
+osc1@pop-os:/home/permission_practice$ sudo touch public_file.txt private_file.txt executable_script.sh 
+osc1@pop-os:/home/permission_practice$ sudo chmod 555 public_file.txt
+osc1@pop-os:/home/permission_practice$ sudo chmod 666 public_file.txt 
+osc1@pop-os:/home/permission_practice$ sudo chmod 644 private_file.txt
+osc1@pop-os:/home/permission_practice$ 
+osc1@pop-os:/home/permission_practice$ sudo chmod 666 public_file.txt
+osc1@pop-os:/home/permission_practice$ sudo chmod 600 private_file.txt
+osc1@pop-os:/home/permission_practice$ sudo chmod 750 excutable script.sh
+chmod: cannot access 'excutable': No such file or directory
+chmod: cannot access 'script.sh': No such file or directory
+osc1@pop-os:/home/permission_practice$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+osc1@pop-os:/home/permission_practice$ sudo chmod 666 public_file.txt 
+osc1@pop-os:/home/permission_practice$ sudo chmod 600 private_file.txt
+osc1@pop-os:/home/permission_practice$ sudo chmod 750 excutable_script.sh
+chmod: cannot access 'excutable_script.sh': No such file or directory
+osc1@pop-os:/home/permission_practice$ sudo chmod 750 executable_script.sh 
+osc1@pop-os:/home/permission_practice$ sudo chown osc private_file.txt 
+osc1@pop-os:/home/permission_practice$ sudo chrp osc_group  private_file.txt 
+sudo: chrp: command not found
+osc1@pop-os:/home/permission_practice$ sudo chgrp osc_group  private_file.txt 
+osc1@pop-os:/home/permission_practice$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+osc1@pop-os:/home/permission_practice$ sleep 1000
+
+^C
+osc1@pop-os:/home/permission_practice$ sudo sleep 1000
+^C
+osc1@pop-os:/home/permission_practice$ sudo sleep 1
+osc1@pop-os:/home/permission_practice$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+osc1        5666    5665  0 21:09 pts/0    00:00:00 -sh
+osc1        5672    5666  0 21:09 pts/0    00:00:00 bash
+osc1        5836    5672  0 21:31 pts/0    00:00:00 ps -f
+osc1@pop-os:/home/permission_practice$  sleep 10
+ps -f
+osc1@pop-os:/home/permission_practice$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+osc1        5666    5665  0 21:09 pts/0    00:00:00 -sh
+osc1        5672    5666  0 21:09 pts/0    00:00:00 bash
+osc1        5852    5672  0 21:33 pts/0    00:00:00 ps -f
+osc1@pop-os:/home/permission_practice$ kill 5852
+bash: kill: (5852) - No such process
+osc1@pop-os:/home/permission_practice$ kill 5666
+osc1@pop-os:/home/permission_practice$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+osc1        5666    5665  0 21:09 pts/0    00:00:00 -sh
+osc1        5672    5666  0 21:09 pts/0    00:00:00 bash
+osc1        5853    5672  0 21:34 pts/0    00:00:00 ps -f
+osc1@pop-os:/home/permission_practice$ sleep 1000 &
+[1] 5854
+osc1@pop-os:/home/permission_practice$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+osc1        5666    5665  0 21:09 pts/0    00:00:00 -sh
+osc1        5672    5666  0 21:09 pts/0    00:00:00 bash
+osc1        5854    5672  0 21:36 pts/0    00:00:00 sleep 1000
+osc1        5855    5672  0 21:36 pts/0    00:00:00 ps -f
+osc1@pop-os:/home/permission_practice$ kill 5854
+osc1@pop-os:/home/permission_practice$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+osc1        5666    5665  0 21:09 pts/0    00:00:00 -sh
+osc1        5672    5666  0 21:09 pts/0    00:00:00 bash
+osc1        5856    5672  0 21:37 pts/0    00:00:00 ps -f
+[1]+  Terminated              sleep 1000
+osc1@pop-os:/home/permission_practice$ vim
+Command 'vim' not found, but can be installed with:
+sudo apt install vim         # version 2:8.2.3995-1ubuntu2.11, or (You will have to enable component called 'main')
+sudo apt install vim-tiny    # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'main')
+sudo apt install neovim      # version 0.6.1-3 (You will have to enable component called 'universe')
+sudo apt install vim-athena  # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+sudo apt install vim-gtk3    # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+sudo apt install vim-nox     # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+osc1@pop-os:/home/permission_practice$ sudo vim
+sudo: vim: command not found
+osc1@pop-os:/home/permission_practice$  install vim
+install: missing destination file operand after 'vim'
+Try 'install --help' for more information.
+osc1@pop-os:/home/permission_practice$ vim
+Command 'vim' not found, but can be installed with:
+sudo apt install vim         # version 2:8.2.3995-1ubuntu2.11, or (You will have to enable component called 'main')
+sudo apt install vim-tiny    # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'main')
+sudo apt install neovim      # version 0.6.1-3 (You will have to enable component called 'universe')
+sudo apt install vim-athena  # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+sudo apt install vim-gtk3    # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+sudo apt install vim-nox     # version 2:8.2.3995-1ubuntu2.11 (You will have to enable component called 'universe')
+osc1@pop-os:/home/permission_practice$ sudo apt install vim 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  vim-common vim-runtime vim-tiny
+Suggested packages:
+  ctags vim-doc vim-scripts indent
+The following NEW packages will be installed:
+  vim vim-runtime
+The following packages will be upgraded:
+  vim-common vim-tiny
+2 upgraded, 2 newly installed, 0 to remove and 225 not upgraded.
+Need to get 9,350 kB of archives.
+After this operation, 37.6 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://apt.pop-os.org/ubuntu jammy-security/main amd64 vim-common all 2:8.2.3995-1ubuntu2.11 [81.5 kB]
+Get:2 http://apt.pop-os.org/ubuntu jammy-security/main amd64 vim-tiny amd64 2:8.2.3995-1ubuntu2.11 [708 kB]
+Get:3 http://apt.pop-os.org/ubuntu jammy-security/main amd64 vim-runtime all 2:8.2.3995-1ubuntu2.11 [6,828 kB]
+Get:4 http://apt.pop-os.org/ubuntu jammy-security/main amd64 vim amd64 2:8.2.3995-1ubuntu2.11 [1,733 kB]
+Fetched 9,350 kB in 34s (272 kB/s)                                             
+(Reading database ... 198179 files and directories currently installed.)
+Preparing to unpack .../vim-common_2%3a8.2.3995-1ubuntu2.11_all.deb ...
+Unpacking vim-common (2:8.2.3995-1ubuntu2.11) over (2:8.2.3995-1ubuntu2.8) ...
+Setting up vim-common (2:8.2.3995-1ubuntu2.11) ...
+(Reading database ... 198179 files and directories currently installed.)
+Preparing to unpack .../vim-tiny_2%3a8.2.3995-1ubuntu2.11_amd64.deb ...
+Unpacking vim-tiny (2:8.2.3995-1ubuntu2.11) over (2:8.2.3995-1ubuntu2.8) ...
+Setting up vim-tiny (2:8.2.3995-1ubuntu2.11) ...
+Selecting previously unselected package vim-runtime.
+(Reading database ... 198179 files and directories currently installed.)
+Preparing to unpack .../vim-runtime_2%3a8.2.3995-1ubuntu2.11_all.deb ...
+Adding 'diversion of /usr/share/vim/vim82/doc/help.txt to /usr/share/vim/vim82/d
+oc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim82/doc/tags to /usr/share/vim/vim82/doc/t
+ags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.2.3995-1ubuntu2.11) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../vim_2%3a8.2.3995-1ubuntu2.11_amd64.deb ...
+Unpacking vim (2:8.2.3995-1ubuntu2.11) ...
+Setting up vim-runtime (2:8.2.3995-1ubuntu2.11) ...
+Setting up vim (2:8.2.3995-1ubuntu2.11) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in a
+uto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdi
+ff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in
+ auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) 
+in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in aut
+o mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in
+ auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in aut
+o mode
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu3) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for desktop-file-utils (0.26-1ubuntu3) ...
+osc1@pop-os:/home/permission_practice$ vim
+
+[1]+  Stopped                 vim
+osc1@pop-os:/home/permission_practice$ ^C
+osc1@pop-os:/home/permission_practice$ vim &
+[2] 6581
+osc1@pop-os:/home/permission_practice$ killall vim
+
+[2]+  Stopped                 vim
+osc1@pop-os:/home/permission_practice$ jobs
+[1]-  Stopped                 vim
+[2]+  Stopped                 vim
+osc1@pop-os:/home/permission_practice$ ps 
+    PID TTY          TIME CMD
+   5666 pts/0    00:00:00 sh
+   5672 pts/0    00:00:00 bash
+   6389 pts/0    00:00:00 vim
+   6581 pts/0    00:00:00 vim
+   6583 pts/0    00:00:00 ps
+osc1@pop-os:/home/permission_practice$ ps -1
+    PID TTY      STAT   TIME COMMAND
+      1 ?        Ss     0:01 /sbin/init splash
+osc1@pop-os:/home/permission_practice$ man ps
+osc1@pop-os:/home/permission_practice$ 
+osc1@pop-os:/home/permission_practice$ 
+osc1@pop-os:/home/permission_practice$ sudo apt install neofetch 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  caca-utils chafa gsfonts imagemagick imagemagick-6-common imagemagick-6.q16
+  jp2a libchafa0 libde265-0 libfftw3-double3 libgc1 libheif1 libid3tag0
+  libilmbase25 libimlib2 libjxr-tools libjxr0 liblqr-1-0 libmagickcore-6.q16-6
+  libmagickcore-6.q16-6-extra libmagickwand-6.q16-6 libnetpbm10 libopenexr25
+  libsixel-bin libsixel1 libwmflite-0.2-7 netpbm toilet toilet-fonts w3m
+  w3m-img
+Suggested packages:
+  imagemagick-doc autotrace enscript ffmpeg gimp gnuplot grads graphviz hp2xx
+  html2ps libwmf-bin mplayer povray radiance texlive-base-bin transfig
+  ufraw-batch libfftw3-bin libfftw3-dev inkscape figlet cmigemo dict dict-wn
+  dictd mime-support w3m-el xsel
+The following NEW packages will be installed:
+  caca-utils chafa gsfonts imagemagick imagemagick-6-common imagemagick-6.q16
+  jp2a libchafa0 libde265-0 libfftw3-double3 libgc1 libheif1 libid3tag0
+  libilmbase25 libimlib2 libjxr-tools libjxr0 liblqr-1-0 libmagickcore-6.q16-6
+  libmagickcore-6.q16-6-extra libmagickwand-6.q16-6 libnetpbm10 libopenexr25
+  libsixel-bin libsixel1 libwmflite-0.2-7 neofetch netpbm toilet toilet-fonts
+  w3m w3m-img
+0 upgraded, 32 newly installed, 0 to remove and 225 not upgraded.
+Need to get 11.7 MB of archives.
+After this operation, 34.9 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://apt.pop-os.org/ubuntu jammy/main amd64 libfftw3-double3 amd64 3.3.8-2ubuntu8 [770 kB]
+Get:2 http://apt.pop-os.org/ubuntu jammy/universe amd64 libde265-0 amd64 1.0.8-1 [243 kB]
+Get:3 http://apt.pop-os.org/ubuntu jammy/universe amd64 libheif1 amd64 1.12.0-2build1 [196 kB]
+Get:4 http://apt.pop-os.org/ubuntu jammy/universe amd64 liblqr-1-0 amd64 0.4.2-2.1 [27.7 kB]
+Get:5 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 imagemagick-6-common all 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [63.6 kB]
+Get:6 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 libmagickcore-6.q16-6 amd64 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [1,788 kB]
+Get:7 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 libmagickwand-6.q16-6 amd64 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [328 kB]
+Get:8 http://apt.pop-os.org/ubuntu jammy/universe amd64 libid3tag0 amd64 0.15.1b-14 [31.3 kB]
+Get:9 http://apt.pop-os.org/ubuntu jammy/universe amd64 libimlib2 amd64 1.7.4-1build1 [195 kB]
+Get:10 http://apt.pop-os.org/ubuntu jammy/universe amd64 caca-utils amd64 0.99.beta19-2.2ubuntu4 [57.1 kB]
+Get:11 http://apt.pop-os.org/ubuntu jammy/universe amd64 libchafa0 amd64 1.8.0-1 [88.3 kB]
+Get:12 http://apt.pop-os.org/ubuntu jammy/universe amd64 chafa amd64 1.8.0-1 [38.6 kB]
+Get:13 http://apt.pop-os.org/ubuntu jammy/universe amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.5 [3,120 kB]
+Get:14 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 imagemagick-6.q16 amd64 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [224 kB]
+Get:15 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 imagemagick amd64 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [14.6 kB]
+Get:16 http://apt.pop-os.org/ubuntu jammy/universe amd64 jp2a amd64 1.1.1-1 [28.9 kB]
+Get:17 http://apt.pop-os.org/ubuntu jammy/main amd64 libgc1 amd64 1:8.0.6-1.1build1 [96.8 kB]
+Get:18 http://apt.pop-os.org/ubuntu jammy/universe amd64 libilmbase25 amd64 2.5.7-2 [175 kB]
+Get:19 http://apt.pop-os.org/ubuntu jammy/universe amd64 libjxr0 amd64 1.2~git20170615.f752187-5 [174 kB]
+Get:20 http://apt.pop-os.org/ubuntu jammy/universe amd64 libjxr-tools amd64 1.2~git20170615.f752187-5 [16.0 kB]
+Get:21 http://apt.pop-os.org/ubuntu jammy/universe amd64 libopenexr25 amd64 2.5.7-1 [780 kB]
+Get:22 http://apt.pop-os.org/ubuntu jammy/main amd64 libwmflite-0.2-7 amd64 0.2.12-5ubuntu1 [68.9 kB]
+Get:23 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 libmagickcore-6.q16-6-extra amd64 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 [70.1 kB]
+Get:24 http://apt.pop-os.org/ubuntu jammy/universe amd64 libnetpbm10 amd64 2:10.0-15.4 [59.1 kB]
+Get:25 http://apt.pop-os.org/ubuntu jammy/universe amd64 neofetch all 7.1.0-3 [84.3 kB]
+Get:26 http://apt.pop-os.org/ubuntu jammy/universe amd64 netpbm amd64 2:10.0-15.4 [1,007 kB]
+Get:27 http://apt.pop-os.org/ubuntu jammy/universe amd64 toilet-fonts all 0.3-1.4 [714 kB]
+Get:28 http://apt.pop-os.org/ubuntu jammy/universe amd64 toilet amd64 0.3-1.4 [12.7 kB]
+Get:29 http://apt.pop-os.org/ubuntu jammy-security/main amd64 w3m amd64 0.5.3+git20210102-6ubuntu0.1 [1,105 kB]
+Get:30 http://apt.pop-os.org/ubuntu jammy-security/universe amd64 w3m-img amd64 0.5.3+git20210102-6ubuntu0.1 [23.6 kB]
+Get:31 http://apt.pop-os.org/ubuntu jammy/universe amd64 libsixel1 amd64 1.10.3-3 [111 kB]   
+Get:32 http://apt.pop-os.org/ubuntu jammy/universe amd64 libsixel-bin amd64 1.10.3-3 [18.5 kB]
+Fetched 11.7 MB in 1min 59s (98.8 kB/s)                                                      
+Extracting templates from packages: 100%
+Selecting previously unselected package libfftw3-double3:amd64.
+(Reading database ... 200120 files and directories currently installed.)
+Preparing to unpack .../00-libfftw3-double3_3.3.8-2ubuntu8_amd64.deb ...
+Unpacking libfftw3-double3:amd64 (3.3.8-2ubuntu8) ...
+Selecting previously unselected package libde265-0:amd64.
+Preparing to unpack .../01-libde265-0_1.0.8-1_amd64.deb ...
+Unpacking libde265-0:amd64 (1.0.8-1) ...
+Selecting previously unselected package libheif1:amd64.
+Preparing to unpack .../02-libheif1_1.12.0-2build1_amd64.deb ...
+Unpacking libheif1:amd64 (1.12.0-2build1) ...
+Selecting previously unselected package liblqr-1-0:amd64.
+Preparing to unpack .../03-liblqr-1-0_0.4.2-2.1_amd64.deb ...
+Unpacking liblqr-1-0:amd64 (0.4.2-2.1) ...
+Selecting previously unselected package imagemagick-6-common.
+Preparing to unpack .../04-imagemagick-6-common_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_all.deb 
+...
+Unpacking imagemagick-6-common (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package libmagickcore-6.q16-6:amd64.
+Preparing to unpack .../05-libmagickcore-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.d
+eb ...
+Unpacking libmagickcore-6.q16-6:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package libmagickwand-6.q16-6:amd64.
+Preparing to unpack .../06-libmagickwand-6.q16-6_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.d
+eb ...
+Unpacking libmagickwand-6.q16-6:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package libid3tag0:amd64.
+Preparing to unpack .../07-libid3tag0_0.15.1b-14_amd64.deb ...
+Unpacking libid3tag0:amd64 (0.15.1b-14) ...
+Selecting previously unselected package libimlib2:amd64.
+Preparing to unpack .../08-libimlib2_1.7.4-1build1_amd64.deb ...
+Unpacking libimlib2:amd64 (1.7.4-1build1) ...
+Selecting previously unselected package caca-utils.
+Preparing to unpack .../09-caca-utils_0.99.beta19-2.2ubuntu4_amd64.deb ...
+Unpacking caca-utils (0.99.beta19-2.2ubuntu4) ...
+Selecting previously unselected package libchafa0:amd64.
+Preparing to unpack .../10-libchafa0_1.8.0-1_amd64.deb ...
+Unpacking libchafa0:amd64 (1.8.0-1) ...
+Selecting previously unselected package chafa.
+Preparing to unpack .../11-chafa_1.8.0-1_amd64.deb ...
+Unpacking chafa (1.8.0-1) ...
+Selecting previously unselected package gsfonts.
+Preparing to unpack .../12-gsfonts_1%3a8.11+urwcyr1.0.7~pre44-4.5_all.deb ...
+Unpacking gsfonts (1:8.11+urwcyr1.0.7~pre44-4.5) ...
+Selecting previously unselected package imagemagick-6.q16.
+Preparing to unpack .../13-imagemagick-6.q16_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb .
+..
+Unpacking imagemagick-6.q16 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package imagemagick.
+Preparing to unpack .../14-imagemagick_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_amd64.deb ...
+Unpacking imagemagick (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package jp2a.
+Preparing to unpack .../15-jp2a_1.1.1-1_amd64.deb ...
+Unpacking jp2a (1.1.1-1) ...
+Selecting previously unselected package libgc1:amd64.
+Preparing to unpack .../16-libgc1_1%3a8.0.6-1.1build1_amd64.deb ...
+Unpacking libgc1:amd64 (1:8.0.6-1.1build1) ...
+Selecting previously unselected package libilmbase25:amd64.
+Preparing to unpack .../17-libilmbase25_2.5.7-2_amd64.deb ...
+Unpacking libilmbase25:amd64 (2.5.7-2) ...
+Selecting previously unselected package libjxr0:amd64.
+Preparing to unpack .../18-libjxr0_1.2~git20170615.f752187-5_amd64.deb ...
+Unpacking libjxr0:amd64 (1.2~git20170615.f752187-5) ...
+Selecting previously unselected package libjxr-tools.
+Preparing to unpack .../19-libjxr-tools_1.2~git20170615.f752187-5_amd64.deb ...
+Unpacking libjxr-tools (1.2~git20170615.f752187-5) ...
+Selecting previously unselected package libopenexr25:amd64.
+Preparing to unpack .../20-libopenexr25_2.5.7-1_amd64.deb ...
+Unpacking libopenexr25:amd64 (2.5.7-1) ...
+Selecting previously unselected package libwmflite-0.2-7:amd64.
+Preparing to unpack .../21-libwmflite-0.2-7_0.2.12-5ubuntu1_amd64.deb ...
+Unpacking libwmflite-0.2-7:amd64 (0.2.12-5ubuntu1) ...
+Selecting previously unselected package libmagickcore-6.q16-6-extra:amd64.
+Preparing to unpack .../22-libmagickcore-6.q16-6-extra_8%3a6.9.11.60+dfsg-1.3ubuntu0.22.04.3_a
+md64.deb ...
+Unpacking libmagickcore-6.q16-6-extra:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Selecting previously unselected package libnetpbm10.
+Preparing to unpack .../23-libnetpbm10_2%3a10.0-15.4_amd64.deb ...
+Unpacking libnetpbm10 (2:10.0-15.4) ...
+Selecting previously unselected package neofetch.
+Preparing to unpack .../24-neofetch_7.1.0-3_all.deb ...
+Unpacking neofetch (7.1.0-3) ...
+Selecting previously unselected package netpbm.
+Preparing to unpack .../25-netpbm_2%3a10.0-15.4_amd64.deb ...
+Unpacking netpbm (2:10.0-15.4) ...
+Selecting previously unselected package toilet-fonts.
+Preparing to unpack .../26-toilet-fonts_0.3-1.4_all.deb ...
+Unpacking toilet-fonts (0.3-1.4) ...
+Selecting previously unselected package toilet.
+Preparing to unpack .../27-toilet_0.3-1.4_amd64.deb ...
+Unpacking toilet (0.3-1.4) ...
+Selecting previously unselected package w3m.
+Preparing to unpack .../28-w3m_0.5.3+git20210102-6ubuntu0.1_amd64.deb ...
+Unpacking w3m (0.5.3+git20210102-6ubuntu0.1) ...
+Selecting previously unselected package w3m-img.
+Preparing to unpack .../29-w3m-img_0.5.3+git20210102-6ubuntu0.1_amd64.deb ...
+Unpacking w3m-img (0.5.3+git20210102-6ubuntu0.1) ...
+Selecting previously unselected package libsixel1:amd64.
+Preparing to unpack .../30-libsixel1_1.10.3-3_amd64.deb ...
+Unpacking libsixel1:amd64 (1.10.3-3) ...
+Selecting previously unselected package libsixel-bin.
+Preparing to unpack .../31-libsixel-bin_1.10.3-3_amd64.deb ...
+Unpacking libsixel-bin (1.10.3-3) ...
+Setting up imagemagick-6-common (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Setting up toilet-fonts (0.3-1.4) ...
+Setting up libwmflite-0.2-7:amd64 (0.2.12-5ubuntu1) ...
+Setting up toilet (0.3-1.4) ...
+update-alternatives: using /usr/bin/figlet-toilet to provide /usr/bin/figlet (figlet) in auto 
+mode
+Setting up libjxr0:amd64 (1.2~git20170615.f752187-5) ...
+Setting up jp2a (1.1.1-1) ...
+Setting up libilmbase25:amd64 (2.5.7-2) ...
+Setting up libnetpbm10 (2:10.0-15.4) ...
+Setting up neofetch (7.1.0-3) ...
+Setting up libchafa0:amd64 (1.8.0-1) ...
+Setting up libopenexr25:amd64 (2.5.7-1) ...
+Setting up libid3tag0:amd64 (0.15.1b-14) ...
+Setting up gsfonts (1:8.11+urwcyr1.0.7~pre44-4.5) ...
+Setting up libsixel1:amd64 (1.10.3-3) ...
+Setting up libimlib2:amd64 (1.7.4-1build1) ...
+Setting up netpbm (2:10.0-15.4) ...
+Setting up libgc1:amd64 (1:8.0.6-1.1build1) ...
+Setting up libfftw3-double3:amd64 (3.3.8-2ubuntu8) ...
+Setting up liblqr-1-0:amd64 (0.4.2-2.1) ...
+Setting up libde265-0:amd64 (1.0.8-1) ...
+Setting up libjxr-tools (1.2~git20170615.f752187-5) ...
+Setting up caca-utils (0.99.beta19-2.2ubuntu4) ...
+Setting up libheif1:amd64 (1.12.0-2build1) ...
+Setting up libsixel-bin (1.10.3-3) ...
+Setting up libmagickcore-6.q16-6:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Setting up w3m (0.5.3+git20210102-6ubuntu0.1) ...
+Setting up w3m-img (0.5.3+git20210102-6ubuntu0.1) ...
+Setting up libmagickwand-6.q16-6:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Setting up libmagickcore-6.q16-6-extra:amd64 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Setting up chafa (1.8.0-1) ...
+Setting up imagemagick-6.q16 (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+update-alternatives: using /usr/bin/compare-im6.q16 to provide /usr/bin/compare (compare) in a
+uto mode
+update-alternatives: using /usr/bin/compare-im6.q16 to provide /usr/bin/compare-im6 (compare-i
+m6) in auto mode
+update-alternatives: using /usr/bin/animate-im6.q16 to provide /usr/bin/animate (animate) in a
+uto mode
+update-alternatives: using /usr/bin/animate-im6.q16 to provide /usr/bin/animate-im6 (animate-i
+m6) in auto mode
+update-alternatives: using /usr/bin/convert-im6.q16 to provide /usr/bin/convert (convert) in a
+uto mode
+update-alternatives: using /usr/bin/convert-im6.q16 to provide /usr/bin/convert-im6 (convert-i
+m6) in auto mode
+update-alternatives: using /usr/bin/composite-im6.q16 to provide /usr/bin/composite (composite
+) in auto mode
+update-alternatives: using /usr/bin/composite-im6.q16 to provide /usr/bin/composite-im6 (compo
+site-im6) in auto mode
+update-alternatives: using /usr/bin/conjure-im6.q16 to provide /usr/bin/conjure (conjure) in a
+uto mode
+update-alternatives: using /usr/bin/conjure-im6.q16 to provide /usr/bin/conjure-im6 (conjure-i
+m6) in auto mode
+update-alternatives: using /usr/bin/import-im6.q16 to provide /usr/bin/import (import) in auto
+ mode
+update-alternatives: using /usr/bin/import-im6.q16 to provide /usr/bin/import-im6 (import-im6)
+ in auto mode
+update-alternatives: using /usr/bin/identify-im6.q16 to provide /usr/bin/identify (identify) i
+n auto mode
+update-alternatives: using /usr/bin/identify-im6.q16 to provide /usr/bin/identify-im6 (identif
+y-im6) in auto mode
+update-alternatives: using /usr/bin/stream-im6.q16 to provide /usr/bin/stream (stream) in auto
+ mode
+update-alternatives: using /usr/bin/stream-im6.q16 to provide /usr/bin/stream-im6 (stream-im6)
+ in auto mode
+update-alternatives: using /usr/bin/display-im6.q16 to provide /usr/bin/display (display) in a
+uto mode
+update-alternatives: using /usr/bin/display-im6.q16 to provide /usr/bin/display-im6 (display-i
+m6) in auto mode
+update-alternatives: using /usr/bin/montage-im6.q16 to provide /usr/bin/montage (montage) in a
+uto mode
+update-alternatives: using /usr/bin/montage-im6.q16 to provide /usr/bin/montage-im6 (montage-i
+m6) in auto mode
+update-alternatives: using /usr/bin/mogrify-im6.q16 to provide /usr/bin/mogrify (mogrify) in a
+uto mode
+update-alternatives: using /usr/bin/mogrify-im6.q16 to provide /usr/bin/mogrify-im6 (mogrify-i
+m6) in auto mode
+Setting up imagemagick (8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3) ...
+Processing triggers for desktop-file-utils (0.26-1ubuntu3) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for gnome-menus (3.36.0-1ubuntu3) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for fontconfig (2.13.1-4.2ubuntu5) ...
+osc1@pop-os:/home/permission_practice$ sudo apt-get remove neofetch
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  caca-utils chafa jp2a libchafa0 toilet toilet-fonts
+Use 'sudo apt autoremove' to remove them.
+The following packages will be REMOVED:
+  neofetch
+0 upgraded, 0 newly installed, 1 to remove and 225 not upgraded.
+After this operation, 359 kB disk space will be freed.
+Do you want to continue? [Y/n] y
+(Reading database ... 201408 files and directories currently installed.)
+Removing neofetch (7.1.0-3) ...
+Processing triggers for man-db (2.10.2-1) ...
+osc1@pop-os:/home/permission_practice$ 
